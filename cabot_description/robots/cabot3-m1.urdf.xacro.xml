@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-Copyright (c) 2020  Carnegie Mellon University
+Copyright (c) 2024  Carnegie Mellon University, Miraikan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,8 @@ SOFTWARE.
 
   <xacro:arg name="sim" default="true" />
 
-  <!-- velodyne -->
-  <xacro:arg name="use_velodyne" default="true" />
-
-  <!-- camera type -->
-  <xacro:arg name="camera_type" default="realsense" />
-  <xacro:property name="camera_type" value="$(arg camera_type)" />
-
   <!-- include xacro macros -->
-  <xacro:include filename="$(find cabot_description)/urdf/cabot3-m1_description.urdf.xml" />
-  <xacro:include filename="$(find cabot_description)/urdf/sensors/hokuyo_ust_20lx.urdf.xacro.xml"/>
+  <xacro:include filename="$(find cabot_description)/urdf/cabot3-m_description.urdf.xml" />
   <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/imu_sensor.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/_d435.urdf.xacro.xml"/>
@@ -96,39 +88,24 @@ SOFTWARE.
   <!-- IMU sensor description-->
   <xacro:imu_macro prefix="cabot/imu" frame="imu_frame"/>
 
-  <!-- Hokuyo UST 20LX -->
-  <xacro:unless value="$(arg use_velodyne)">
-    <xacro:sensor_hokuyo_ust_20lx parent="lidar_link" extended="$(arg extended)"
-				  min_angle="-1.57" max_angle="3.14"/>
-  </xacro:unless>
-
-
   <!-- Velodyne VLP-16 -->
-  <xacro:if value="$(arg use_velodyne)">
-    <xacro:arg name="gpu" default="true"/>
-    <xacro:property name="gpu" value="$(arg gpu)" />
-    <xacro:VLP-16 parent="lidar_link" name="velodyne" topic="/velodyne_points"
-	    hz="10" gpu="${gpu}" min_range="0.3">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:VLP-16>
-  </xacro:if>
+  <xacro:arg name="gpu" default="true"/>
+  <xacro:property name="gpu" value="$(arg gpu)" />
+  <xacro:VLP-16 parent="lidar_link" name="velodyne" topic="/velodyne_points"
+    hz="10" gpu="${gpu}" min_range="0.3">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:VLP-16>
 
   <!-- RealSense D455 -->
-  <xacro:if value="${camera_type=='realsense'}">
-    <xacro:sensor_d455 parent="rs1_link" name="d455_rs1" topics_ns="rs1">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:sensor_d455>
-  </xacro:if>
-  <xacro:if value="${camera_type=='realsense'}">
-    <xacro:sensor_d455 parent="rs2_link" name="d455_rs2" topics_ns="rs2">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:sensor_d455>
-  </xacro:if>
-  <xacro:if value="${camera_type=='realsense'}">
-    <xacro:sensor_d455 parent="rs3_link" name="d455_rs3" topics_ns="rs3">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:sensor_d455>
-  </xacro:if>
+  <xacro:sensor_d455 parent="rs1_link" name="d455_rs1" topics_ns="rs1">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:sensor_d455>
+  <xacro:sensor_d455 parent="rs2_link" name="d455_rs2" topics_ns="rs2">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:sensor_d455>
+  <xacro:sensor_d455 parent="rs3_link" name="d455_rs3" topics_ns="rs3">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:sensor_d455>
 
   <!-- Livox Mid-70 -->
   <xacro:if value="$(arg sim)">
