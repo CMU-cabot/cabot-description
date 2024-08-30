@@ -30,7 +30,7 @@ aluminum peripherial evaluation case.
     <xacro:property name="d455_cam_width" value="0.132"/>
     <xacro:property name="d455_cam_height" value="0.047"/>
     <xacro:property name="d455_cam_depth" value="0.041"/>
-    <xacro:property name="d455_cam_mount_from_center_offset" value="0.0149"/>
+    <xacro:property name="d455_cam_mount_from_center_offset" value="0.0205"/>
   
     <!-- The following offset is relative the the physical d455 camera peripherial
   	camera tripod mount -->

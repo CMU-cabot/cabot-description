@@ -41,7 +41,6 @@ SOFTWARE.
   <xacro:include filename="$(find cabot_description)/urdf/sensors/hokuyo_ust_20lx.urdf.xacro.xml"/>
   <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/imu_sensor.urdf.xacro.xml"/>
-  <xacro:include filename="$(find cabot_description)/urdf/sensors/_d455.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/_d455e.urdf.xacro.xml"/>
 
   <!-- content -->
@@ -53,42 +52,42 @@ SOFTWARE.
   <link name="lidar_link">
   </link>
   <joint name="lidar_base" type="fixed">
-      <origin xyz="0.10 0.0 ${0.522-0.038}" rpy="0 0 1.57"/> <!-- lidar mount position -->
+      <origin xyz="0.11 0.0 0.476" rpy="0 0 0"/> <!-- lidar mount position -->
       <parent link="base_link"/>
       <child link="lidar_link"/>
   </joint>
   <link name="camera_link">
   </link>
   <joint name="camera_base" type="fixed">
-      <origin xyz="0.1657 -0.0025 ${0.525837-0.087}" rpy="0 0 0"/>
+      <origin xyz="0.152 -0.0025 0.460456" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="camera_link"/>
   </joint>
   <link name="rs1_link">
   </link>
   <joint name="rs1_base" type="fixed">
-      <origin xyz="0.1657 -0.0025 ${0.525837-0.087}" rpy="3.1415926535 0 0"/>
+      <origin xyz="0.152 -0.0025 0.460456" rpy="3.1415926535 0 0"/>
       <parent link="base_link"/>
       <child link="rs1_link"/>
   </joint>
   <link name="rs2_link">
   </link>
   <joint name="rs2_base" type="fixed">
-      <origin xyz="0.1325 -0.15 ${0.516837-0.087}" rpy="0 0 ${-90.0/180.0*3.1415926535}"/>
+      <origin xyz="0.089358 -0.093189 0.413456" rpy="0 0 ${-87.0/180.0*3.1415926535}"/>
       <parent link="base_link"/>
       <child link="rs2_link"/>
   </joint>
   <link name="rs3_link">
   </link>
   <joint name="rs3_base" type="fixed">
-      <origin xyz="0.1325 0.15 ${0.493269-0.087}" rpy="3.1415926535 0 ${90.0/180.0*3.1415926535}"/>
+      <origin xyz="0.089358 0.093189 0.460456" rpy="3.1415926535 0 ${87.0/180.0*3.1415926535}"/>
       <parent link="base_link"/>
       <child link="rs3_link"/>
   </joint>
   <link name="livox_link">
   </link>
   <joint name="livox_base" type="fixed">
-      <origin xyz="0.10 0 ${0.100-0.038}" rpy="3.1415926535 0 0"/>
+      <origin xyz="0.1258 0 ${0.006+0.03135}" rpy="3.1415926535 0 0"/>
       <parent link="base_link"/>
       <child link="livox_link"/>
   </joint>
