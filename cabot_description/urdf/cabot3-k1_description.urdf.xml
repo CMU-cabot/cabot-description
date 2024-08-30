@@ -186,7 +186,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 -0.014" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k1_body_1_vlp.stl" /> 
+          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k1_body_1.stl" /> 
         </geometry>
         <xacro:bluegray_material/>
       </visual>

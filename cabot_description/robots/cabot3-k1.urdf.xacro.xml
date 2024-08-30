@@ -59,28 +59,28 @@ SOFTWARE.
   <link name="camera_link">
   </link>
   <joint name="camera_base" type="fixed">
-      <origin xyz="0.152 -0.0025 0.460456" rpy="0 0 0"/>
+      <origin xyz="0.1565 0 0.460456" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="camera_link"/>
   </joint>
   <link name="rs1_link">
   </link>
   <joint name="rs1_base" type="fixed">
-      <origin xyz="0.152 -0.0025 0.460456" rpy="3.1415926535 0 0"/>
+      <origin xyz="0.1565 0 0.460456" rpy="3.1415926535 0 0"/>
       <parent link="base_link"/>
       <child link="rs1_link"/>
   </joint>
   <link name="rs2_link">
   </link>
   <joint name="rs2_base" type="fixed">
-      <origin xyz="0.089358 -0.093189 0.413456" rpy="0 0 ${-87.0/180.0*3.1415926535}"/>
+      <origin xyz="0.089091 -0.093189 0.413456" rpy="0 0 ${-87.0/180.0*3.1415926535}"/>
       <parent link="base_link"/>
       <child link="rs2_link"/>
   </joint>
   <link name="rs3_link">
   </link>
   <joint name="rs3_base" type="fixed">
-      <origin xyz="0.089358 0.093189 0.460456" rpy="3.1415926535 0 ${87.0/180.0*3.1415926535}"/>
+      <origin xyz="0.089091 0.093189 0.460456" rpy="3.1415926535 0 ${87.0/180.0*3.1415926535}"/>
       <parent link="base_link"/>
       <child link="rs3_link"/>
   </joint>
