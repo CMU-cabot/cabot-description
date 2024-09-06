@@ -29,7 +29,7 @@ THE SOFTWARE.
     <xacro:property name="BODY_Y" value="0.24" /> <!-- measured -->
     <xacro:property name="BODY_Z" value="0.48" /> <!-- measured -->
     <xacro:property name="WHEEL_RADIUS" value="0.087" /> <!-- the same with cabot3-k1 -->
-    <xacro:property name="CLEARANCE" value="0.0798" /> 
+    <xacro:property name="CLEARANCE" value="0.07965" /> 
     <xacro:property name="WHEEL_WIDTH" value="0.051" /> <!-- the same with cabot3-k1 -->
     <xacro:property name="WHEEL_BIAS" value="0.139" /> <!-- measured -->
     <xacro:property name="FREEWHEEL_BIAS" value="0.1474" /> <!-- measured -->
@@ -262,8 +262,8 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.014} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
-    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.014} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
+    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.0265} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
+    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.0265} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
 
     <xacro:macro name="virtual_caster" params="name xyz">
       <link name="${name}_link">
@@ -335,13 +335,13 @@ THE SOFTWARE.
       </visual>
     </link>
     <joint name="handle_joint" type="fixed">
-      <origin xyz="-0.03 0.01 ${BODY_Z - 0.2072} " rpy="${M_PI/2} 0 0" />
+      <origin xyz="-0.03 0.01 ${BODY_Z - 0.20735} " rpy="${M_PI/2} 0 0" />
       <parent link="base_link" />
       <child link="handle_link" />
       <axis xyz="0 0 0" />
     </joint>
     <joint name="glip_joint" type="fixed">
-      <origin xyz="-0.03 0 ${BODY_Z + 0.565 - 0.2072} " rpy="0 0 0" />
+      <origin xyz="-0.03 0 ${BODY_Z + 0.565 - 0.20735} " rpy="0 0 0" />
       <parent link="base_link" />
       <child link="glip_link" />
       <axis xyz="0 0 0" />

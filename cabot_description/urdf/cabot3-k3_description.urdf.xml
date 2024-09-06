@@ -25,11 +25,11 @@ THE SOFTWARE.
   <xacro:property name="M_PI" value="3.1415926535897931" />
 
   <xacro:macro name="cabot" params="offset:=^ sim:=^|true">
-    <xacro:property name="BODY_X" value="0.36" /> <!-- measured -->
-    <xacro:property name="BODY_Y" value="0.24" /> <!-- measured -->
+    <xacro:property name="BODY_X" value="0.394" /> <!-- measured -->
+    <xacro:property name="BODY_Y" value="0.237" /> <!-- measured -->
     <xacro:property name="BODY_Z" value="0.48" /> <!-- measured -->
     <xacro:property name="WHEEL_RADIUS" value="0.087" /> <!-- the same with cabot3-k1 -->
-    <xacro:property name="CLEARANCE" value="0.0798" /> 
+    <xacro:property name="CLEARANCE" value="0.07965" /> 
     <xacro:property name="WHEEL_WIDTH" value="0.051" /> <!-- the same with cabot3-k1 -->
     <xacro:property name="WHEEL_BIAS" value="0.139" /> <!-- measured -->
     <xacro:property name="FREEWHEEL_BIAS" value="0.1474" /> <!-- measured -->
@@ -171,7 +171,7 @@ THE SOFTWARE.
     </joint>
 
     <joint name="imu_joint" type="fixed">
-      <origin xyz="0.21 0 0" rpy="0 0 0" /> <!--real imu xyz "0.128762 -0.01689 0.09487  -->
+      <origin xyz="0.229 0 0" rpy="0 0 0" /> <!--real imu xyz "0.248012 -0.01689 0.09487  -->
       <parent link="base_control_shift"/>
       <child link="imu_frame" />
     </joint>
@@ -186,7 +186,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 ${CLEARANCE - WHEEL_RADIUS}" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k1_body_1.stl" /> 
+          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k3_body.stl" /> 
         </geometry>
         <xacro:bluegray_material/>
       </visual>
@@ -229,8 +229,8 @@ THE SOFTWARE.
     </xacro:macro>
 
     <xacro:if value="${sim}">
-      <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-      <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+      <xacro:wheel name="awl" xyz="0.01925 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+      <xacro:wheel name="awr" xyz="0.01925 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
     </xacro:if>
 
     <xacro:macro name="free_wheel" params="name xyz">
@@ -262,8 +262,8 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.014} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
-    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.014} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
+    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.024} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
+    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.024} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
 
     <xacro:macro name="virtual_caster" params="name xyz">
       <link name="${name}_link">
@@ -335,13 +335,13 @@ THE SOFTWARE.
       </visual>
     </link>
     <joint name="handle_joint" type="fixed">
-      <origin xyz="-0.03 0.01 ${BODY_Z - 0.2072} " rpy="${M_PI/2} 0 0" />
+      <origin xyz="-0.03375 0.01 ${BODY_Z - 0.20735} " rpy="${M_PI/2} 0 0" />
       <parent link="base_link" />
       <child link="handle_link" />
       <axis xyz="0 0 0" />
     </joint>
     <joint name="glip_joint" type="fixed">
-      <origin xyz="-0.03 0 ${BODY_Z + 0.565 - 0.2072} " rpy="0 0 0" />
+      <origin xyz="-0.03375 0 ${BODY_Z + 0.565 - 0.20735} " rpy="0 0 0" />
       <parent link="base_link" />
       <child link="glip_link" />
       <axis xyz="0 0 0" />
