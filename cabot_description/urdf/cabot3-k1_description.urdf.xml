@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2020, 2023  Carnegie Mellon University
+Copyright (c) 2020, 2023, 2024  Carnegie Mellon University and Miraikan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,11 @@ THE SOFTWARE.
     <xacro:property name="BODY_Y" value="0.24" /> <!-- measured -->
     <xacro:property name="BODY_Z" value="0.48" /> <!-- measured -->
     <xacro:property name="WHEEL_RADIUS" value="0.087" /> <!-- the same with cabot3-k1 -->
-    <xacro:property name="CLEARANCE" value="0.0798" /> 
+    <xacro:property name="CLEARANCE" value="0.0798" /> <!-- measured -->
     <xacro:property name="WHEEL_WIDTH" value="0.051" /> <!-- the same with cabot3-k1 -->
     <xacro:property name="WHEEL_BIAS" value="0.139" /> <!-- measured -->
     <xacro:property name="FREEWHEEL_BIAS" value="0.1474" /> <!-- measured -->
-    <xacro:property name="LIDAR_X" value="0.1" /> <!-- measured -->
+    <xacro:property name="LIDAR_X" value="0.1" /> 
     <xacro:property name="bluegray_r" value="${103/255}" />
     <xacro:property name="bluegray_g" value="${134/255}" />
     <xacro:property name="bluegray_b" value="${150/255}" />
@@ -228,10 +228,8 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:if value="${sim}">
-      <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-      <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-    </xacro:if>
+    <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
 
     <xacro:macro name="free_wheel" params="name xyz">
       <link name="${name}_link">

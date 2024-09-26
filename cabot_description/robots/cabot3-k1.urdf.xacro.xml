@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-Copyright (c) 2020  Carnegie Mellon University
+Copyright (c) 2020, 2024  Carnegie Mellon University and Miraikan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ SOFTWARE.
   <link name="lidar_link">
   </link>
   <joint name="lidar_base" type="fixed">
-      <origin xyz="0.11 0 ${0.476 - 0.0072}" rpy="0 0 0"/> <!-- lidar mount position -->
+      <origin xyz="0.11 0 ${0.476 - 0.0072}" rpy="0 0 1.57"/> <!-- lidar mount position -->
       <parent link="base_link"/>
       <child link="lidar_link"/>
   </joint>
@@ -139,10 +139,8 @@ SOFTWARE.
   </xacro:if>
 
   <!-- Livox Mid-70 -->
-  <xacro:if value="$(arg sim)">
-    <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid70.xacro" />
-    <xacro:mid70 name="livox" parent="livox_link" topic="/livox/lidar">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:mid70>
-  </xacro:if>
+  <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid70.xacro" />
+  <xacro:mid70 name="livox" parent="livox_link" topic="/livox/lidar">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:mid70>
 </robot>
