@@ -146,10 +146,8 @@ SOFTWARE.
   </xacro:if>
 
   <!-- Livox Mid-70 -->
-  <xacro:if value="$(arg sim)">
-    <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid70.xacro" />
-    <xacro:mid70 parent="livox_link" name="livox" topic="/livox/lidar">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:mid70>
-  </xacro:if>
+  <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid70.xacro" />
+  <xacro:mid70 parent="livox_link" name="livox" topic="/livox/lidar">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:mid70>
 </robot>

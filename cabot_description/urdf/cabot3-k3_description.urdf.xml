@@ -219,13 +219,24 @@ THE SOFTWARE.
           </geometry>
         </collision>
       </link>
-      <joint name="${name}_joint" type="continuous">
-        <origin xyz="${xyz}" rpy="${rpy}" />
-        <parent link="base_control_shift" />
-        <child link="${name}_link" />
-        <axis xyz="0 0 1" />
-        <limit effort="0" velocity="1.0" />
-      </joint>
+      <xacro:if value="${sim}">
+        <joint name="${name}_joint" type="continuous">
+          <origin xyz="${xyz}" rpy="${rpy}" />
+          <parent link="base_control_shift" />
+          <child link="${name}_link" />
+          <axis xyz="0 0 1" />
+          <limit effort="0" velocity="1.0" />
+        </joint>
+      </xacro:if>
+      <xacro:unless value="${sim}">
+        <joint name="${name}_joint" type="fixed">
+          <origin xyz="${xyz}" rpy="${rpy}" />
+          <parent link="base_control_shift" />
+          <child link="${name}_link" />
+          <axis xyz="0 0 1" />
+          <limit effort="0" velocity="1.0" />
+        </joint>
+      </xacro:unless>
     </xacro:macro>
 
     <xacro:wheel name="awl" xyz="0.01925 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
