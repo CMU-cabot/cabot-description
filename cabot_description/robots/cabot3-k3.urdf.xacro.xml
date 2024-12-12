@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<!--
+Copyright (c) 2020, 2024  Carnegie Mellon University and Miraikan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<robot name="cabot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- robot rotation center offset -->
+  <xacro:arg name="offset" default="0" />
+  <!-- flag to extend hokuyo lidar range in simulation -->
+  <xacro:arg name="extended" default="0" />
+
+  <xacro:arg name="sim" default="true" />
+
+  <!-- velodyne -->
+  <xacro:arg name="use_velodyne" default="true" />
+
+  <!-- camera type -->
+  <xacro:arg name="camera_type" default="realsense" />
+  <xacro:property name="camera_type" value="$(arg camera_type)" />
+
+  <!-- include xacro macros -->
+  <xacro:include filename="$(find cabot_description)/urdf/cabot3-k3_description.urdf.xml" />
+  <xacro:include filename="$(find cabot_description)/urdf/sensors/hokuyo_ust_20lx.urdf.xacro.xml"/>
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:include filename="$(find cabot_description)/urdf/sensors/imu_sensor.urdf.xacro.xml"/>
+  <xacro:include filename="$(find cabot_description)/urdf/sensors/_d455e.urdf.xacro.xml"/>
+
+  <!-- content -->
+
+  <!-- cabot description -->
+  <xacro:cabot offset="$(arg offset)" sim="$(arg sim)"/>
+
+  <!-- add link to lidar and camera -->
+  <link name="lidar_link">
+  </link>
+  <joint name="lidar_base" type="fixed">
+      <origin xyz="0.129 0 ${0.4675 - 0.00735}" rpy="0 0 0"/> <!-- lidar mount position -->
+      <parent link="base_link"/>
+      <child link="lidar_link"/>
+  </joint>
+  
+  <link name="gps">
+  </link>
+  <joint name="gps_base" type="fixed">
+      <origin xyz="0.129 0 ${0.569 - 0.00735}" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="gps"/>
+  </joint>
+  
+  <link name="camera_link">
+  </link>
+  <joint name="camera_base" type="fixed">
+      <origin xyz="0.17575 0 ${0.46050 - 0.00735}" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="camera_link"/>
+  </joint>
+  <link name="rs1_link">
+  </link>
+  <joint name="rs1_base" type="fixed">
+      <origin xyz="0.17575 0 ${0.46050 - 0.00735}" rpy="3.1415926535 0 0"/>
+      <parent link="base_link"/>
+      <child link="rs1_link"/>
+  </joint>
+  <link name="rs2_link">
+  </link>
+  <joint name="rs2_base" type="fixed">
+      <origin xyz="0.108341 -0.093671 ${0.41350 - 0.00735}" rpy="0 0 ${-87.0/180.0*3.1415926535}"/>
+      <parent link="base_link"/>
+      <child link="rs2_link"/>
+  </joint>
+  <link name="rs3_link">
+  </link>
+  <joint name="rs3_base" type="fixed">
+      <origin xyz="0.108341 0.093671 ${0.46050 - 0.00735}" rpy="3.1415926535 0 ${87.0/180.0*3.1415926535}"/>
+      <parent link="base_link"/>
+      <child link="rs3_link"/>
+  </joint>
+  <link name="livox_link">
+  </link>
+  <joint name="livox_base" type="fixed">
+      <origin xyz="0.145 0 ${0.03835 - 0.00735}" rpy="3.1415926535 0 0"/>
+      <parent link="base_link"/>
+      <child link="livox_link"/>
+  </joint>
+  <link name="livox_footprint">
+  </link>
+  <joint name="livox_footprint_joint" type="fixed">
+      <origin xyz="0.145 0 -0.00735" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="livox_footprint"/>
+  </joint>
+
+  <!-- IMU sensor description-->
+  <xacro:imu_macro prefix="cabot/imu" frame="imu_frame"/>
+
+  <!-- Hokuyo UST 20LX -->
+  <xacro:unless value="$(arg use_velodyne)">
+    <xacro:sensor_hokuyo_ust_20lx parent="lidar_link" extended="$(arg extended)"
+				  min_angle="-1.57" max_angle="3.14"/>
+  </xacro:unless>
+
+
+  <!-- Velodyne VLP-16 -->
+  <xacro:if value="$(arg use_velodyne)">
+    <xacro:arg name="gpu" default="true"/>
+    <xacro:property name="gpu" value="$(arg gpu)" />
+    <xacro:VLP-16 parent="lidar_link" name="velodyne" topic="/velodyne_points"
+	    hz="10" gpu="${gpu}" min_range="0.3">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:VLP-16>
+  </xacro:if>
+
+  <!-- RealSense D455 -->
+  <xacro:if value="${camera_type=='realsense'}">
+    <xacro:sensor_d455 parent="rs1_link" name="d455_rs1" topics_ns="rs1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:sensor_d455>
+  </xacro:if>
+  <xacro:if value="${camera_type=='realsense'}">
+    <xacro:sensor_d455 parent="rs2_link" name="d455_rs2" topics_ns="rs2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:sensor_d455>
+  </xacro:if>
+  <xacro:if value="${camera_type=='realsense'}">
+    <xacro:sensor_d455 parent="rs3_link" name="d455_rs3" topics_ns="rs3">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:sensor_d455>
+  </xacro:if>
+
+  <!-- Livox Mid-70 -->
+  <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid70.xacro" />
+  <xacro:mid70 parent="livox_link" name="livox" topic="/livox/lidar">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:mid70>
+</robot>
