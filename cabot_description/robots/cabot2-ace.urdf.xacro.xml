@@ -41,6 +41,7 @@ SOFTWARE.
   <xacro:include filename="$(find cabot_description)/urdf/sensors/hokuyo_ust_20lx.urdf.xacro.xml"/>
   <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/imu_sensor.urdf.xacro.xml"/>
+  <xacro:include filename="$(find cabot_description)/urdf/sensors/gps_sensor.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/_d435.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/_d455.urdf.xacro.xml"/>
   
@@ -57,6 +58,15 @@ SOFTWARE.
       <parent link="base_link"/>
       <child link="lidar_link"/>
   </joint>
+
+  <link name="gps">
+  </link>
+  <joint name="gps_base" type="fixed">
+      <origin xyz="0.129 0 ${0.569 - 0.00735}" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="gps"/>
+  </joint>
+
   <link name="camera_link">
   </link>
   <joint name="camera_base" type="fixed">
@@ -88,6 +98,8 @@ SOFTWARE.
 
   <!-- IMU sensor description-->
   <xacro:imu_macro prefix="cabot/imu" frame="imu_frame"/>
+
+  <xacro:gps_macro prefix="cabot/imu" frame="gps"/>
 
   <!-- Hokuyo UST 20LX -->
   <xacro:unless value="$(arg use_velodyne)">
