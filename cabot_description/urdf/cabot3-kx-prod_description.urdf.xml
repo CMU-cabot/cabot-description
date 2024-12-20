@@ -353,7 +353,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.1 0.1 0.1" filename="package://cabot_description/meshes/lidar_porl.stl" />
+          <mesh scale="0.1 0.1 0.1" filename="package://cabot_description/meshes/lidar_pole.stl" />
         </geometry>
         <xacro:white_material/>
       </visual>
