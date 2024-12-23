@@ -191,7 +191,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 ${CLEARANCE - WHEEL_RADIUS}" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.0001 0.0001 0.0001" filename="package://cabot_description/meshes/kx_body_re.stl" /> 
+          <mesh scale="0.0001 0.0001 0.0001" filename="package://cabot_description/meshes/k4_body.stl" /> 
         </geometry>
         <xacro:bluegray_material/>
       </visual>
@@ -306,14 +306,14 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/handle_1.stl" />
+          <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/k4_handle.stl" />
         </geometry>
         <xacro:alminium_material/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/handle_1.stl" />
+          <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/k4_handle.stl" />
         </geometry>
       </collision>
     </link>
@@ -326,7 +326,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.1 0.1 0.1" filename="package://cabot_description/meshes/grip_1.stl" />
+          <mesh scale="0.1 0.1 0.1" filename="package://cabot_description/meshes/k4_grip.stl" />
         </geometry>
         <xacro:black_material/>
       </visual>
@@ -374,7 +374,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/kx_side_leftpanel.stl" />
+          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k4_leftpanel.stl" />
         </geometry>
         <xacro:white_material/>
       </visual>
@@ -395,7 +395,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/kx_side_rightpanel.stl" />
+          <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k4_rightpanel.stl" />
         </geometry>
         <xacro:white_material/>
       </visual>
