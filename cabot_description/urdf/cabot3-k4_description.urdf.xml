@@ -117,7 +117,7 @@ THE SOFTWARE.
       <xacro:gazebo_color reference="caster2_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="caster4_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="handle_link" color="Gazebo/Silver" />
-      <xacro:gazebo_color reference="glip_link" color="Gazebo/DarkGrey" />
+      <xacro:gazebo_color reference="grip_link" color="Gazebo/DarkGrey" />
     </xacro:if>
 
 
@@ -313,7 +313,7 @@ THE SOFTWARE.
         </geometry>
       </collision>
     </link>
-    <link name="glip_link">
+    <link name="grip_link">
       <inertial>
         <origin xyz="-4.3092E-17 0.26035 0.01" rpy="${M_PI/2} 0 0" />
         <mass value="0.1228" />
@@ -333,10 +333,10 @@ THE SOFTWARE.
       <child link="handle_link" />
       <axis xyz="0 0 0" />
     </joint>
-    <joint name="glip_joint" type="fixed">
+    <joint name="grip_joint" type="fixed">
       <origin xyz="-0.04 0 ${0.281+0.627} " rpy="${M_PI/2} 0 0" />
       <parent link="base_link" />
-      <child link="glip_link" />
+      <child link="grip_link" />
       <axis xyz="0 0 0" />
     </joint>
     
