@@ -73,22 +73,26 @@ THE SOFTWARE.
         <gazebo reference="${reference}">
           <mu1>1.0</mu1>
           <mu2>1.0</mu2>
-          <kp>1000000.0</kp>
-          <kd>100.0</kd>
+          <kp>100000.0</kp>
+          <kd>1.0</kd>
           <minDepth>0.001</minDepth>
-          <maxVel>2.0</maxVel>
+          <maxVel>100.0</maxVel>
+          <soft_cfm>0.0</soft_cfm>
+          <soft_erp>0.2</soft_erp>
         </gazebo>
       </xacro:macro>
 
       <xacro:macro name="gazebo_free_wheel" params="reference">
         <gazebo reference="${reference}">
           <material>Gazebo/Black</material>
-          <mu1>0.00</mu1>
-          <mu2>0.00</mu2>
-          <kp>1000000.0</kp>
-          <kd>100.0</kd>
+          <mu1>0.1</mu1>
+          <mu2>0.1</mu2>
+          <kp>100000.0</kp>
+          <kd>1.0</kd>
           <minDepth>0.001</minDepth>
-          <maxVel>1.0</maxVel>
+          <maxVel>100.0</maxVel>
+          <soft_cfm>0.0</soft_cfm>
+          <soft_erp>0.2</soft_erp>
         </gazebo>
       </xacro:macro>
 
@@ -116,8 +120,8 @@ THE SOFTWARE.
       <xacro:gazebo_color reference="awr_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="caster2_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="caster4_link" color="Gazebo/DarkGrey" />
-      <xacro:gazebo_color reference="handle_link" color="Gazebo/Silver" />
-      <xacro:gazebo_color reference="grip_link" color="Gazebo/DarkGrey" />
+      <xacro:gazebo_color reference="handle_link" color="Gazebo/DarkGrey" />
+      <xacro:gazebo_color reference="grip_link" color="Gazebo/Silver" />
     </xacro:if>
 
 
@@ -229,8 +233,8 @@ THE SOFTWARE.
       </joint>														
     </xacro:macro>
 
-    <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
-    <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
+    <xacro:wheel name="awl" xyz="0.01 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
+    <xacro:wheel name="awr" xyz="0.01 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
 
     <xacro:macro name="free_wheel" params="name xyz">
       <link name="${name}_link">
@@ -304,7 +308,7 @@ THE SOFTWARE.
         <geometry>
           <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/cabot3-k4_handle.stl" />
         </geometry>
-        <xacro:alminium_material />
+        <xacro:black_material />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -324,7 +328,7 @@ THE SOFTWARE.
         <geometry>
           <mesh scale="0.1 0.1 0.1" filename="package://cabot_description/meshes/cabot3-k4_grip.stl" />
         </geometry>
-        <xacro:black_material />
+        <xacro:alminium_material />
       </visual>
     </link>
     <joint name="handle_joint" type="fixed">
