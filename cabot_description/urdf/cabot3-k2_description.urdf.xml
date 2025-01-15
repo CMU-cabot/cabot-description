@@ -232,8 +232,8 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-    <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awl" xyz="0.01 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awr" xyz="0.01 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
 
     <xacro:macro name="free_wheel" params="name xyz">
       <link name="${name}_link">

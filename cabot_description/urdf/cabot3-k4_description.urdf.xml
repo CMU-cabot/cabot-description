@@ -122,6 +122,7 @@ THE SOFTWARE.
       <xacro:gazebo_color reference="caster4_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="handle_link" color="Gazebo/DarkGrey" />
       <xacro:gazebo_color reference="grip_link" color="Gazebo/Silver" />
+      <xacro:gazebo_color reference="button_link" color="Gazebo/Red" />
     </xacro:if>
 
 
@@ -148,6 +149,11 @@ THE SOFTWARE.
     <xacro:macro name="white_material">
       <material name="white">
         <color rgba="1.0 1.0 1.0 1" />
+      </material>
+    </xacro:macro>
+    <xacro:macro name="red_material">
+      <material name="red">
+        <color rgba="1.0 0.1 0.1 1" />
       </material>
     </xacro:macro>
 
@@ -191,7 +197,7 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 ${CLEARANCE - WHEEL_RADIUS}" rpy="0 0 0" />
         <geometry>
-          <mesh scale="0.0001 0.0001 0.0001" filename="package://cabot_description/meshes/cabot3-k4_body.stl" /> 
+          <mesh scale="0.01 0.01 0.01" filename="package://cabot_description/meshes/cabot3-k4_body.stl" />
         </geometry>
         <xacro:bluegray_material />
       </visual>
@@ -406,5 +412,27 @@ THE SOFTWARE.
       <child link="cover_right_link" />
       <axis xyz="0 0 0" />
     </joint>
+    
+    <link name="button_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.0" />
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://cabot_description/meshes/cabot3-k4_button.stl" />
+        </geometry>
+        <xacro:red_material />
+      </visual>
+    </link>
+    <joint name="button_joint" type="fixed">
+      <origin xyz="-0.17 0 0.566" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="button_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+    
   </xacro:macro>
 </robot>
