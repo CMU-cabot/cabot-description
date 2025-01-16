@@ -51,10 +51,17 @@ SOFTWARE.
   <!-- add link to lidar and camera -->
   <link name="lidar_link">
   </link>
-  <joint name="lidar_base" type="fixed">
-      <origin xyz="0.11 0 ${0.476 + 0.0156}" rpy="0 0 1.57"/> <!-- lidar mount position -->
-      <parent link="base_link"/>
+  <joint name="lidar_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 1.57"/> <!-- lidar mount position -->
+      <parent link="lidar_base_link"/>
       <child link="lidar_link"/>
+  </joint>
+  <link name="lidar_base_link">
+  </link>
+  <joint name="lidar_base_joint" type="fixed">
+      <origin xyz="0.11 0 ${0.476 + 0.0156}" rpy="0 0 0"/> <!-- lidar mount position -->
+      <parent link="base_link"/>
+      <child link="lidar_base_link"/>
   </joint>
   
   <!-- add link to gps--> <!-- lidar + 0.093m in z-direction -->
