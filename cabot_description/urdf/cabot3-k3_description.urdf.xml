@@ -102,10 +102,10 @@ THE SOFTWARE.
         </gazebo>
       </xacro:macro>
 
-      <xacro:gazebo_wheel reference="awl_link"/>
-      <xacro:gazebo_wheel reference="awr_link"/>
-      <xacro:gazebo_free_wheel reference="vc1_link"/>
-      <xacro:gazebo_free_wheel reference="vc2_link"/>
+      <xacro:gazebo_wheel reference="awl_link" />
+      <xacro:gazebo_wheel reference="awr_link" />
+      <xacro:gazebo_free_wheel reference="vc1_link" />
+      <xacro:gazebo_free_wheel reference="vc2_link" />
       <!--xacro:gazebo_color reference="base_link" color="Gazebo/DarkGrey" /-->
       <xacro:property name="bluegray_r" value="${103/255}" />
       <xacro:property name="bluegray_g" value="${134/255}" />
@@ -157,26 +157,26 @@ THE SOFTWARE.
         <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
       </inertial>
     </link>
-    <link name="base_control_shift"/>
-    <link name="imu_frame"/>
+    <link name="base_control_shift" />
+    <link name="imu_frame" />
 
     <joint name="base_joint" type="prismatic">
-      <axis xyz="0 1 0"/>
-      <limit lower="0" upper="0" effort="10" velocity="1"/>
+      <axis xyz="0 1 0" />
+      <limit lower="0" upper="0" effort="10" velocity="1" />
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="base_footprint"/>
+      <parent link="base_footprint" />
       <child link="base_control_shift" />
     </joint>
 
     <joint name="control_center_joint" type="fixed">
-      <origin xyz="0.09 0 ${WHEEL_RADIUS}" rpy="0 0 0" />
-      <parent link="base_control_shift"/>
+      <origin xyz="0.07075 0 ${WHEEL_RADIUS}" rpy="0 0 0" />
+      <parent link="base_control_shift" />
       <child link="base_link" />
     </joint>
 
     <joint name="imu_joint" type="fixed">
       <origin xyz="0.229 0 0" rpy="0 0 0" /> <!--real imu xyz "0.248012 -0.01689 0.09487  -->
-      <parent link="base_control_shift"/>
+      <parent link="base_control_shift" />
       <child link="imu_frame" />
     </joint>
 
@@ -192,7 +192,7 @@ THE SOFTWARE.
         <geometry>
           <mesh scale="0.001 0.001 0.001" filename="package://cabot_description/meshes/k3_body.stl" /> 
         </geometry>
-        <xacro:bluegray_material/>
+        <xacro:bluegray_material />
       </visual>
       <collision>
         <origin xyz="0 0 ${BODY_Z/2 + CLEARANCE - WHEEL_RADIUS}" rpy="0 0 0" /> 
@@ -212,14 +212,14 @@ THE SOFTWARE.
         <visual>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <cylinder length="${WHEEL_WIDTH}" radius="${WHEEL_RADIUS}"/>
+            <cylinder length="${WHEEL_WIDTH}" radius="${WHEEL_RADIUS}" />
           </geometry>
-          <xacro:black_material/>
+          <xacro:black_material />
         </visual>
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <cylinder length="${WHEEL_WIDTH}" radius="${WHEEL_RADIUS}"/>
+            <cylinder length="${WHEEL_WIDTH}" radius="${WHEEL_RADIUS}" />
           </geometry>
         </collision>
       </link>
@@ -243,8 +243,8 @@ THE SOFTWARE.
       </xacro:unless>
     </xacro:macro>
 
-    <xacro:wheel name="awl" xyz="0.01925 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-    <xacro:wheel name="awr" xyz="0.01925 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
+    <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0" />
 
     <xacro:macro name="free_wheel" params="name xyz">
       <link name="${name}_link">
@@ -258,12 +258,12 @@ THE SOFTWARE.
           <geometry>
             <mesh filename="package://cabot_description/meshes/${name}_Link.STL" />
           </geometry>
-          <xacro:black_material/>
+          <xacro:black_material />
         </visual>
         <visual>
           <origin xyz="0.02 0 0" rpy="0 ${M_PI/2} 0" />
           <geometry>
-            <cylinder length="0.08" radius="0.01"/>
+            <cylinder length="0.08" radius="0.01" />
           </geometry>
         </visual>
       </link>
@@ -275,8 +275,8 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.024} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
-    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.024} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}"/>
+    <xacro:free_wheel name="pw2" xyz="${BODY_X/2 - 0.024} ${FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}" />
+    <xacro:free_wheel name="pw4" xyz="${BODY_X/2 - 0.024} ${-FREEWHEEL_BIAS/2} ${-CLEARANCE + WHEEL_RADIUS/2}" />
 
     <xacro:macro name="virtual_caster" params="name xyz">
       <link name="${name}_link">
@@ -289,7 +289,7 @@ THE SOFTWARE.
              <visual>
              <origin xyz="0 0 0" rpy="0 0 0" />
              <geometry>
-             <sphere radius="0.045"/>
+             <sphere radius="0.045" />
              </geometry>
              <material name="">
              <color rgba="0.79216 0.81961 0.93333 1" />
@@ -299,7 +299,7 @@ THE SOFTWARE.
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <sphere radius="${WHEEL_RADIUS}"/>
+            <sphere radius="${WHEEL_RADIUS/2}" />
           </geometry>
         </collision>
       </link>
@@ -311,7 +311,7 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:virtual_caster name="vc1" xyz="${BODY_X/2 - WHEEL_RADIUS} 0 0"/>
+    <xacro:virtual_caster name="vc1" xyz="${BODY_X/2 - WHEEL_RADIUS/2 } 0 ${-WHEEL_RADIUS/2}" />
 
     <link name="handle_link">
       <inertial>
@@ -324,7 +324,7 @@ THE SOFTWARE.
         <geometry>
           <mesh scale="1.0 1.215 1.00" filename="package://cabot_description/meshes/handle_Link.STL" />
         </geometry>
-        <xacro:alminium_material/>
+        <xacro:alminium_material />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -342,9 +342,9 @@ THE SOFTWARE.
       <visual>
         <origin xyz="0 0 0" rpy="0 ${M_PI/2} 0" />
         <geometry>
-          <cylinder length="0.16" radius="0.016"/>
+          <cylinder length="0.16" radius="0.016" />
         </geometry>
-        <xacro:black_material/>
+        <xacro:black_material />
       </visual>
     </link>
     <joint name="handle_joint" type="fixed">
