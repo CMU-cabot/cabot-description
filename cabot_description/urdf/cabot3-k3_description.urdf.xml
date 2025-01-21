@@ -169,7 +169,7 @@ THE SOFTWARE.
     </joint>
 
     <joint name="control_center_joint" type="fixed">
-      <origin xyz="0.09 0 ${WHEEL_RADIUS}" rpy="0 0 0" />
+      <origin xyz="0.07075 0 ${WHEEL_RADIUS}" rpy="0 0 0" />
       <parent link="base_control_shift"/>
       <child link="base_link" />
     </joint>
@@ -243,8 +243,8 @@ THE SOFTWARE.
       </xacro:unless>
     </xacro:macro>
 
-    <xacro:wheel name="awl" xyz="0.01925 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
-    <xacro:wheel name="awr" xyz="0.01925 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awl" xyz="0 ${WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
+    <xacro:wheel name="awr" xyz="0 ${-WHEEL_BIAS/2} ${WHEEL_RADIUS}" rpy="${-M_PI/2} 0 0"/>
 
     <xacro:macro name="free_wheel" params="name xyz">
       <link name="${name}_link">
@@ -299,7 +299,7 @@ THE SOFTWARE.
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <sphere radius="${WHEEL_RADIUS}"/>
+            <sphere radius="${WHEEL_RADIUS/2}"/>
           </geometry>
         </collision>
       </link>
@@ -311,7 +311,7 @@ THE SOFTWARE.
       </joint>
     </xacro:macro>
 
-    <xacro:virtual_caster name="vc1" xyz="${BODY_X/2 - WHEEL_RADIUS} 0 0"/>
+    <xacro:virtual_caster name="vc1" xyz="${BODY_X/2 - WHEEL_RADIUS/2 } 0 ${-WHEEL_RADIUS/2}"/>
 
     <link name="handle_link">
       <inertial>

@@ -52,7 +52,7 @@ SOFTWARE.
   <link name="lidar_link">
   </link>
   <joint name="lidar_base" type="fixed">
-      <origin xyz="0.11 0 ${0.48115 - 0.00735}" rpy="0 0 1.57"/> <!-- lidar mount position -->
+      <origin xyz="0.11 0 ${0.48115 + 0.01075}" rpy="0 0 1.57"/> <!-- lidar mount position -->
       <parent link="base_link"/>
       <child link="lidar_link"/>
   </joint>
@@ -60,7 +60,7 @@ SOFTWARE.
   <link name="gps">
   </link>
   <joint name="gps_base" type="fixed">
-      <origin xyz="0.11 0 ${0.569 - 0.00735}" rpy="0 0 0"/>
+      <origin xyz="0.11 0 ${0.569}" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="gps"/>
   </joint>
@@ -95,14 +95,14 @@ SOFTWARE.
   <link name="livox_link">
   </link>
   <joint name="livox_base" type="fixed">
-      <origin xyz="0.1258 0 ${0.006+0.03135-0.00735}" rpy="3.1415926535 0 0"/>
+      <origin xyz="0.122 0 0.036" rpy="3.1415926535 0 0"/>
       <parent link="base_link"/>
       <child link="livox_link"/>
   </joint>
   <link name="livox_footprint">
   </link>
   <joint name="livox_footprint_joint" type="fixed">
-      <origin xyz="0.1258 0 -0.00735" rpy="0 0 0"/>
+      <origin xyz="0.122 0 0.006" rpy="0 0 0"/>
       <parent link="base_link"/>
       <child link="livox_footprint"/>
   </joint>
