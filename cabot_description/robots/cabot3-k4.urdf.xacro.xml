@@ -52,7 +52,7 @@ SOFTWARE.
   <link name="lidar_link">
   </link>
   <joint name="lidar_base" type="fixed">
-    <origin xyz="0.11 0 ${0.476 + 0.0156}" rpy="0 0 0" /> <!-- lidar mount position -->
+    <origin xyz="0.11 0 ${0.476 + 0.0156}" rpy="0 0 1.57" /> <!-- lidar mount position -->
     <parent link="base_link" />
     <child link="lidar_link" />
   </joint>
@@ -114,7 +114,7 @@ SOFTWARE.
   <!-- Hokuyo UST 20LX -->
   <xacro:unless value="$(arg use_velodyne)">
     <xacro:sensor_hokuyo_ust_20lx parent="lidar_link" extended="$(arg extended)"
-				  min_angle="-1.57" max_angle="3.14" />
+                                  min_angle="-1.57" max_angle="3.14" />
   </xacro:unless>
 
 
@@ -123,7 +123,7 @@ SOFTWARE.
     <xacro:arg name="gpu" default="true" />
     <xacro:property name="gpu" value="$(arg gpu)" />
     <xacro:VLP-16 parent="lidar_link" name="velodyne" topic="/velodyne_points"
-	    hz="10" gpu="${gpu}" min_range="0.3">
+            hz="10" gpu="${gpu}" min_range="0.3">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:VLP-16>
   </xacro:if>
