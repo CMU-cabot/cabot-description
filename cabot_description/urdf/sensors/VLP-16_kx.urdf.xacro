@@ -70,6 +70,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
       </collision>
     </link>
 
+    <gazebo reference="${name}_base_link">
+      <material>Gazebo/Gray</material>
+    </gazebo>
+
     <joint name="${name}_base_scan_joint" type="fixed">
       <origin xyz="0 0 0.0377" rpy="0 0 0"/>
       <parent link="${name}_base_link"/>
