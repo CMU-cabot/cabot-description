@@ -106,6 +106,7 @@ THE SOFTWARE.
       <xacro:gazebo_wheel reference="awr_link" />
       <xacro:gazebo_free_wheel reference="vc1_link" />
       <xacro:gazebo_free_wheel reference="vc2_link" />
+      <xacro:gazebo_free_wheel reference="wc1_link" />
       <gazebo reference="base_link">
         <visual>
           <material>
@@ -302,6 +303,30 @@ THE SOFTWARE.
     </xacro:macro>
 
     <xacro:virtual_caster name="vc1" xyz="${BODY_X/2 - WHEEL_RADIUS/2 } 0 ${-WHEEL_RADIUS/2}"/>
+    
+    <xacro:macro name="wheelie_caster" params="name xyz">
+      <link name="${name}_link">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.2" />
+          <inertia ixx="0.000162" ixy="0.0" ixz="0.0" iyy="0.000162" iyz="0.0" izz="0.000162" />
+        </inertial>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <cylinder length="0.121" radius="0.02" />
+          </geometry>
+        </collision>
+      </link>
+      <joint name="${name}_joint" type="fixed">
+        <origin xyz="${xyz}" rpy="${M_PI/2} 0 0" />
+        <parent link="base_link" />
+        <child link="${name}_link" />
+        <axis xyz="1 0 0" />
+      </joint>
+    </xacro:macro>
+
+    <xacro:wheelie_caster name="wc1" xyz="${-BODY_X/2 - 0.02} 0 ${-0.0345 + CLEARANCE - WHEEL_RADIUS}" />
 
     <link name="handle_link">
       <inertial>
