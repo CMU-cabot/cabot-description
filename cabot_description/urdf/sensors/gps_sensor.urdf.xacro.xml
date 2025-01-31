@@ -22,7 +22,7 @@ SOFTWARE.
 -->
 
 <robot name="gps" xmlns:xacro="http://ros.org/wiki/xacro">
-<xacro:macro name="gps_macro" params="prefix:=gps frame:=gps">
+<xacro:macro name="gps_macro" params="frame:=gps">
   <gazebo reference="${frame}">
     <gravity>true</gravity>
     <sensor name="gps_sensor" type="gps">
