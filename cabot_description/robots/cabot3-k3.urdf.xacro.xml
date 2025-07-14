@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-Copyright (c) 2020, 2024  Carnegie Mellon University and Miraikan
+Copyright (c) 2020, 2025  Carnegie Mellon University and Miraikan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,7 @@ SOFTWARE.
   <xacro:include filename="$(find cabot_description)/urdf/sensors/hokuyo_ust_20lx.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/VLP-16_kx.urdf.xacro"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/imu_sensor.urdf.xacro.xml"/>
+  <xacro:include filename="$(find cabot_description)/urdf/sensors/gps_sensor.urdf.xacro.xml"/>
   <xacro:include filename="$(find cabot_description)/urdf/sensors/_d455e.urdf.xacro.xml"/>
 
   <!-- content -->
@@ -110,6 +111,9 @@ SOFTWARE.
 
   <!-- IMU sensor description-->
   <xacro:imu_macro prefix="cabot/imu" frame="imu_frame"/>
+
+  <!-- GPS sensor description-->
+  <xacro:gps_macro frame="gps"/>
 
   <!-- Hokuyo UST 20LX -->
   <xacro:unless value="$(arg use_velodyne)">
