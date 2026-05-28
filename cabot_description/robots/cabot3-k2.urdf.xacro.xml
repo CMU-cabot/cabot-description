@@ -35,6 +35,7 @@ SOFTWARE.
   <!-- camera type -->
   <xacro:arg name="camera_type" default="realsense" />
   <xacro:property name="camera_type" value="$(arg camera_type)" />
+  <xacro:arg name="gps_namespace" default="/ublox" />
 
   <!-- include xacro macros -->
   <xacro:include filename="$(find cabot_description)/urdf/cabot3-k2_description.urdf.xml" />
@@ -119,7 +120,7 @@ SOFTWARE.
   <xacro:imu_macro prefix="cabot/imu" frame="imu_frame"/>
 
   <!-- GPS sensor description-->
-  <xacro:gps_macro frame="gps"/>
+  <xacro:gps_macro frame="gps" namespace="$(arg gps_namespace)"/>
 
   <!-- Hokuyo UST 20LX -->
   <xacro:unless value="$(arg use_velodyne)">
